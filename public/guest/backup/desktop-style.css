@@ -1,0 +1,29 @@
+@media (min-width: 1280px) {
+.pas-market * { box-sizing: border-box }
+.pas-market { max-width: 1440px; margin: 0 auto; padding: 0 40px }
+.pas-market .bottom-nav { display: none !important }
+
+.pas-market .app-header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--border-color, #eeeeee) }
+.pas-market .header-content { max-width: 1440px; margin: 0 auto; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between }
+.pas-market .nav-left, .pas-market .nav-center, .pas-market .nav-right { display: flex; align-items: center }
+.pas-market .nav-left { gap: 16px }
+.pas-market .brand { display: flex; align-items: center; gap: 8px; color: var(--primary-color, #ff9800); text-decoration: none; font-weight: 700 }
+.pas-market .nav-categories { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; color: var(--text-primary, #333333); background: var(--primary-light, #fff3e0) }
+.pas-market .nav-center { flex: 1; justify-content: center }
+.pas-market .search-bar { width: 640px; max-width: 640px; display: flex; align-items: center; background: var(--bg-background, #f0f2f5); border-radius: 12px; padding: 12px 16px; position: relative }
+.pas-market .search-icon { margin-right: 8px; color: var(--text-secondary, #757575) }
+.pas-market .search-bar input { flex: 1; background: transparent; border: none; outline: none; font-size: 14px; color: var(--text-primary, #333333) }
+.pas-market .search-btn { background: var(--primary-color, #ff9800); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; transition: all .2s ease; margin-left: 8px }
+.pas-market .search-btn:hover { background: var(--primary-dark, #f57c00) }
+.pas-market .category-dropdown { position: absolute; top: 100%; left: 0; margin-top: 8px; width: 320px; background: #fff; border: 1px solid var(--border-color, #eeeeee); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); z-index: 200; padding: 8px 0 }
+.pas-market .category-dropdown-list { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow: auto }
+.pas-market .category-dropdown-list li { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 14px; color: var(--text-primary, #333333); cursor: pointer }
+.pas-market .category-dropdown-list li:hover { background: var(--primary-light, #fff3e0); color: var(--primary-color, #ff9800) }
+.pas-market .nav-right { gap: 24px }
+.pas-market .nav-link { color: var(--text-primary, #333333); text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 8px; transition: all .2s ease }
+.pas-market .nav-link:hover, .pas-market .nav-link.active { background: var(--primary-light, #fff3e0); color: var(--primary-color, #ff9800) }
+.pas-market .nav-action { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; color: var(--text-primary, #333333); background: transparent }
+.pas-market .nav-action:hover { background: var(--primary-light, #fff3e0); color: var(--primary-color, #ff9800) }
+.pas-market .icon-wrapper { position: relative; display: flex; align-items: center; justify-content: center }
+.pas-market .badge-dot { position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; background: var(--danger-color, #e53935); border-radius: 50%; border: 2px solid #fff }
+}

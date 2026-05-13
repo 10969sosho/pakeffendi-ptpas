@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Product extends Model
+{
+    protected $fillable = [
+        'sku',
+        'name',
+        'variant',
+        'product_brand_code',
+        'product_category_code',
+        'description',
+        'unit',
+        'weight_kg',
+        'discontinued',
+        'photo_path',
+        'price_1',
+        'price_2',
+        'price_3',
+        'qty_1',
+        'disc_1',
+        'qty_2',
+        'disc_2',
+        'qty_3',
+        'disc_3',
+    ];
+
+    protected $casts = [
+        'discontinued' => 'boolean',
+        'weight_kg' => 'decimal:2',
+        'price_1' => 'decimal:2',
+        'price_2' => 'decimal:2',
+        'price_3' => 'decimal:2',
+        'disc_1' => 'decimal:2',
+        'disc_2' => 'decimal:2',
+        'disc_3' => 'decimal:2',
+    ];
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(ProductBrand::class, 'product_brand_code', 'brand_code');
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_code', 'category_code');
+    }
+
+    public function pricingForQuantity(int $quantity): array
+    {
+        $qty = max(0, $quantity);
+        $qty2 = $this->qty_2 ? (int) $this->qty_2 : null;
+        $qty3 = $this->qty_3 ? (int) $this->qty_3 : null;
+
+        if ($qty3 && $qty >= $qty3) {
+            $unitPrice = (float) ($this->price_3 ?? $this->price_2 ?? $this->price_1);
+            $discountPercent = (float) ($this->disc_3 ?? 0);
+        } elseif ($qty2 && $qty >= $qty2) {
+            $unitPrice = (float) ($this->price_2 ?? $this->price_1);
+            $discountPercent = (float) ($this->disc_2 ?? 0);
+        } else {
+            $unitPrice = (float) $this->price_1;
+            $discountPercent = (float) ($this->disc_1 ?? 0);
+        }
+
+        $netPrice = $unitPrice * (1 - ($discountPercent / 100));
+
+        return [
+            'unit_price' => $unitPrice,
+            'discount_percent' => $discountPercent,
+            'net_price' => $netPrice,
+        ];
+    }
+}

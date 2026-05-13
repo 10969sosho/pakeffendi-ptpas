@@ -1,0 +1,110 @@
+/* Authentication Forms */
+#loginForm button[type="submit"]:disabled,
+#registerForm button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#loginForm button[type="submit"]:disabled:hover,
+#registerForm button[type="submit"]:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading animation for buttons */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-loading .spinner-border {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.15em;
+    margin-right: 0.5rem;
+}
+
+/* Form validation states */
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+}
+
+.form-control.is-valid {
+    border-color: var(--success-color);
+}
+
+.invalid-feedback {
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Alert improvements */
+.alert {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.alert-danger {
+    background-color: #fee;
+    color: var(--danger-color);
+}
+
+.alert-success {
+    background-color: #f0fdf4;
+    color: var(--success-color);
+}
+
+/* Card improvements for auth */
+.auth-card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-lg);
+    border: none;
+}
+
+.auth-card .card-body {
+    padding: 2rem;
+}
+
+@media (max-width: 576px) {
+    .auth-card .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Input group improvements */
+.input-group .btn-outline-secondary {
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: var(--light-color);
+    color: var(--secondary-color);
+}
+
+/* Form focus states */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--focus-ring);
+}
+
+/* Link improvements */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+a.text-primary:hover {
+    color: var(--primary-dark) !important;
+}
+
+/* Security notice */
+.security-notice {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.security-notice i {
+    color: var(--success-color);
+}

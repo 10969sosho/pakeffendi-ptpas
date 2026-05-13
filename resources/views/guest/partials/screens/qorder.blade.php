@@ -1,0 +1,57 @@
+<div id="qorder-screen" class="full-screen-page" style="display: none;">
+    <div class="app-header qorder-header">
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Cari produk" data-qorder-search>
+            <i class="fas fa-times text-muted qorder-clear-search"></i>
+        </div>
+        <div class="icon-badge text-accent" role="button" tabindex="0" data-action="openCart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge-dot" data-cart-badge style="display: none;"></span>
+        </div>
+    </div>
+
+    <div class="scroll-content qorder-scroll-content">
+        <div class="qorder-container">
+            @foreach($featuredProducts as $product)
+                <div class="qorder-card" data-product-id="{{ $product->id }}">
+                    <div class="qorder-img">
+                        @if($product->photo_path)
+                            <img src="{{ \Illuminate\Support\Str::startsWith($product->photo_path, ['http://', 'https://']) ? $product->photo_path : asset('storage/' . $product->photo_path) }}" alt="{{ $product->name }}">
+                        @else
+                            <i class="far fa-image qorder-placeholder-icon"></i>
+                        @endif
+                    </div>
+                    <div class="qorder-info">
+                        <h4 class="qorder-title">{{ $product->name }}</h4>
+                        @if(($product->variant ?? '') !== '')
+                            <div class="text-muted small mb-1">{{ $product->variant }}</div>
+                        @endif
+                        <div class="qorder-tiers">
+                            <div class="tier active">
+                                <span>1 pcs</span>
+                                <span>Rp {{ number_format((float) $product->price_1, 0, ',', '.') }}</span>
+                            </div>
+                        </div>
+                        <div class="qorder-actions">
+                            <div class="qty-control">
+                                <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                                <input type="text" value="1" class="qty-input-box qty-input" data-qorder-qty>
+                                <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="qorder-checkbox qorder-checkbox-styled" data-qorder-check>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="qorder-footer">
+        <button class="add-to-cart-btn" data-add-to-cart-btn>
+            <i class="fas fa-shopping-cart cart-icon-margin"></i> Masukkan Keranjang
+        </button>
+    </div>
+</div>

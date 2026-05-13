@@ -1,0 +1,56 @@
+<div id="product-list-screen" class="full-screen-page" style="display: none;">
+    <div class="page-header search-header">
+        <button id="close-product-list" class="back-btn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="search-bar compact">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Cari produk" data-product-search>
+        </div>
+        <div class="header-actions compact">
+            <div class="icon-badge" role="button" tabindex="0" data-action="openNotif"><i class="fas fa-bell"></i></div>
+            <div class="icon-badge" role="button" tabindex="0" data-action="openCart">
+                <i class="fas fa-shopping-cart"></i><span class="badge-dot" data-cart-badge style="display: none;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-sort-bar">
+        <button class="filter-btn" type="button" data-action="comingSoon">
+            Filter <i class="fas fa-filter"></i>
+        </button>
+        <div class="sort-dropdown">
+            <select id="sort-select">
+                <option value="terbaru">Produk Terbaru</option>
+                <option value="termahal">Produk Termahal</option>
+                <option value="termurah">Produk Termurah</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="product-list-content">
+        <div class="product-grid" data-product-grid>
+            @foreach($featuredProducts as $product)
+                <div class="product-card grid-item" data-product-id="{{ $product->id }}">
+                    <div class="prod-img-box">
+                        @php
+                            $img = $product->photo_path;
+                            $imgUrl = $img
+                                ? (\Illuminate\Support\Str::startsWith($img, ['http://', 'https://']) ? $img : asset('storage/' . $img))
+                                : 'https://placehold.co/150x150/white/black?text=Product';
+                        @endphp
+                        <img src="{{ $imgUrl }}" alt="Product">
+                    </div>
+                    <div class="prod-info">
+                        <p class="prod-brand">{{ $product->brand?->brand_name }}</p>
+                        <p class="prod-name">{{ $product->name }}</p>
+                        @if(($product->variant ?? '') !== '')
+                            <p class="text-muted small mb-1">{{ $product->variant }}</p>
+                        @endif
+                        <p class="prod-price">Rp {{ number_format((float) $product->price_1, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
