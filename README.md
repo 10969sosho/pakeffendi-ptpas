@@ -29,6 +29,34 @@ E-commerce untuk penjualan produk PT Pakeffendi, dibangun dengan Laravel 12.
 6. `php artisan storage:link`
 7. `php artisan serve`
 
+## Deploy ke Hosting
+1. Masuk terminal hosting
+2. Masuk folder repository:
+   ```bash
+   cd /home/ptpasonl/repositories/pakeffendi-ptpas
+   ```
+3. Pull terbaru dari GitHub
+   ```bash
+   git pull origin main
+   ```
+   Pastikan muncul:
+   - `Updating ...`
+   - Atau: `Already up to date.`
+4. Deploy ke subdomain
+   ```bash
+   bash deploy.sh
+   ```
+   Tunggu sampai muncul:
+   `DEPLOY DONE`
+5. Clear cache browser
+   - Mac: `CMD + SHIFT + R`
+   - Windows: `CTRL + F5`
+6. Cek hasil deploy
+   Pastikan file berubah, contoh:
+   ```bash
+   cat /home/ptpasonl/web.ptpasonline.com/public/guest/js/search.js
+   ```
+
 ## Changelog
 - 2026-05-13: Fix guest navbar search (hanya search saat Enter/klik tombol, prefill input)
 - 2026-05-13: Fix storage product image (nama file asli, spasi jadi "-", flat di products/)
