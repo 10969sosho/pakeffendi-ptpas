@@ -56,7 +56,7 @@
         <div class="grid grid-cols-2 md:grid-cols-6 gap-3" id="imageGrid">
             @forelse ($product->images->sortBy('sort_order') as $image)
                 <div class="border border-slate-200 rounded-xl overflow-hidden bg-white" data-variant="{{ $image->product_variant_item_id ?: 'none' }}">
-                    <img src="{{ asset('storage/'.$image->image_path) }}" class="w-full h-24 object-cover" alt="">
+                    <img src="{{ $image->image_url }}" class="w-full h-24 object-cover" alt="">
                     <div class="p-2 flex items-center justify-between">
                         <div class="text-xs text-slate-500">#{{ $image->sort_order }}</div>
                         <form method="post" action="{{ route('admin.products.images.destroy', $image) }}" onsubmit="return confirm('Hapus gambar ini?')">

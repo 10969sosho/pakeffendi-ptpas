@@ -50,10 +50,7 @@
             <div class="products-scroll">
                 @foreach(($featuredProducts ?? collect()) as $product)
                     @php
-                        $primaryImage = $product->photo_path;
-                        $imageUrl = $primaryImage
-                            ? (\Illuminate\Support\Str::startsWith($primaryImage, ['http://', 'https://']) ? $primaryImage : asset('storage/' . $primaryImage))
-                            : asset('guest/img/placeholder-product.svg');
+                        $imageUrl = $product->photo_url;
                     @endphp
                     <div class="product-card" data-product-id="{{ $product->id }}">
                         <div class="prod-img-box">
@@ -109,10 +106,7 @@
             <div class="products-scroll">
                 @foreach(($featuredProducts ?? collect())->take(10) as $product)
                     @php
-                        $primaryImage = $product->photo_path;
-                        $imageUrl = $primaryImage
-                            ? (\Illuminate\Support\Str::startsWith($primaryImage, ['http://', 'https://']) ? $primaryImage : asset('storage/' . $primaryImage))
-                            : asset('guest/img/placeholder-product.svg');
+                        $imageUrl = $product->photo_url;
                     @endphp
                     <div class="product-card" data-product-id="{{ $product->id }}">
                         <div class="prod-img-box">

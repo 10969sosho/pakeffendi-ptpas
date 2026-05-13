@@ -4,10 +4,7 @@
 
 @section('content')
 @php
-    $primaryImage = $product->photo_path;
-    $mainImageUrl = $primaryImage
-        ? (\Illuminate\Support\Str::startsWith($primaryImage, ['http://', 'https://']) ? $primaryImage : asset('storage/' . $primaryImage))
-        : asset('guest/img/placeholder-product.svg');
+    $mainImageUrl = $product->photo_url;
 @endphp
 <!-- Page Header -->
 <section class="bg-light py-4">
@@ -147,10 +144,7 @@
                 <div class="row g-3 g-lg-4">
                     @foreach(($relatedProducts ?? collect()) as $related)
                     @php
-                        $relatedPrimaryImage = $related->photo_path;
-                        $relatedImageUrl = $relatedPrimaryImage
-                            ? (\Illuminate\Support\Str::startsWith($relatedPrimaryImage, ['http://', 'https://']) ? $relatedPrimaryImage : asset('storage/' . $relatedPrimaryImage))
-                            : asset('guest/img/placeholder-product.svg');
+                        $relatedImageUrl = $related->photo_url;
                     @endphp
                     <div class="col-6 col-md-3">
                         <div class="product-card" data-product-id="{{ $related->id }}">

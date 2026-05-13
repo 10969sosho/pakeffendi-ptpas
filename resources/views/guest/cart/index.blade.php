@@ -32,10 +32,7 @@
                             @foreach(($cart?->items ?? collect()) as $item)
                             @php
                                 $product = $item->product;
-                                $primaryImage = $product?->photo_path;
-                                $imageUrl = $primaryImage
-                                    ? (\Illuminate\Support\Str::startsWith($primaryImage, ['http://', 'https://']) ? $primaryImage : asset('storage/' . $primaryImage))
-                                    : asset('guest/img/placeholder-product.svg');
+                                $imageUrl = $product?->photo_url ?? asset('guest/img/placeholder-product.svg');
                                 $qty = (int) $item->quantity;
                                 $pricing = $product ? $product->pricingForQuantity($qty) : null;
                                 $unitPrice = (float) ($pricing['unit_price'] ?? 0);

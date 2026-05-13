@@ -16,6 +16,11 @@
                     <div>
                         <label class="block text-sm font-medium mb-1">Photo</label>
                         <input type="file" name="photo" accept="image/*" class="w-full">
+                        @if($product->photo_path)
+                            <div class="mt-2">
+                                <img src="{{ $product->photo_url }}" class="w-32 h-32 object-cover rounded-lg border">
+                            </div>
+                        @endif
                     </div>
                     <div></div>
                     <div>

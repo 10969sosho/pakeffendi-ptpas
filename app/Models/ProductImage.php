@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class ProductImage extends Model
 {
@@ -28,5 +29,18 @@ class ProductImage extends Model
     public function variantItem(): BelongsTo
     {
         return $this->belongsTo(ProductVariantItem::class, 'product_variant_item_id');
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        if (! $this->image_path) {
+            return asset('guest/img/placeholder-product.svg');
+        }
+
+        if (Str::startsWith($this->image_path, ['http://', 'https://'])) {
+            return $this->image_path;
+        }
+
+        return asset('storage/'.str_replace(' ', '%20', $this->image_path));
     }
 }

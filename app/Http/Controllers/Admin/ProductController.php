@@ -65,9 +65,9 @@ class ProductController extends Controller
             'price_3' => ['nullable', 'numeric', 'min:0.01'],
             'qty_1' => ['nullable', 'integer', 'min:0'],
             'disc_1' => ['nullable', 'numeric', 'min:0'],
-            'qty_2' => ['nullable', 'integer', 'min:1', 'required_with:price_2,disc_2'],
+            'qty_2' => ['nullable', 'integer', 'min:1'],
             'disc_2' => ['nullable', 'numeric', 'min:0'],
-            'qty_3' => ['nullable', 'integer', 'min:1', 'required_with:price_3,disc_3'],
+            'qty_3' => ['nullable', 'integer', 'min:1'],
             'disc_3' => ['nullable', 'numeric', 'min:0'],
         ]);
 
@@ -80,7 +80,7 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $originalName = basename((string) $file->getClientOriginalName());
-            $path = $file->storeAs('products/'.$product->id, $originalName, 'public');
+            $path = $file->storeAs('products', $originalName, 'public');
             $product->photo_path = $path;
             $product->save();
         }
@@ -120,16 +120,16 @@ class ProductController extends Controller
             'price_3' => ['nullable', 'numeric', 'min:0.01'],
             'qty_1' => ['nullable', 'integer', 'min:0'],
             'disc_1' => ['nullable', 'numeric', 'min:0'],
-            'qty_2' => ['nullable', 'integer', 'min:1', 'required_with:price_2,disc_2'],
+            'qty_2' => ['nullable', 'integer', 'min:1'],
             'disc_2' => ['nullable', 'numeric', 'min:0'],
-            'qty_3' => ['nullable', 'integer', 'min:1', 'required_with:price_3,disc_3'],
+            'qty_3' => ['nullable', 'integer', 'min:1'],
             'disc_3' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $originalName = basename((string) $file->getClientOriginalName());
-            $path = $file->storeAs('products/'.$product->id, $originalName, 'public');
+            $path = $file->storeAs('products', $originalName, 'public');
             $product->photo_path = $path;
         }
 

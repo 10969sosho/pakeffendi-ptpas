@@ -34,10 +34,7 @@
                 <div class="product-card grid-item" data-product-id="{{ $product->id }}">
                     <div class="prod-img-box">
                         @php
-                            $img = $product->photo_path;
-                            $imgUrl = $img
-                                ? (\Illuminate\Support\Str::startsWith($img, ['http://', 'https://']) ? $img : asset('storage/' . $img))
-                                : 'https://placehold.co/150x150/white/black?text=Product';
+                            $imgUrl = $product->photo_url;
                         @endphp
                         <img src="{{ $imgUrl }}" alt="Product">
                     </div>

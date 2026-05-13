@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
+    protected $appends = ['photo_url'];
+
     protected $fillable = [
         'sku',
         'name',
@@ -74,5 +77,18 @@ class Product extends Model
             'discount_percent' => $discountPercent,
             'net_price' => $netPrice,
         ];
+    }
+
+    public function getPhotoUrlAttribute(): string
+    {
+        if (! $this->photo_path) {
+            return asset('guest/img/placeholder-product.svg');
+        }
+
+        if (Str::startsWith($this->photo_path, ['http://', 'https://'])) {
+            return $this->photo_path;
+        }
+
+        return asset('storage/'.str_replace(' ', '%20', $this->photo_path));
     }
 }

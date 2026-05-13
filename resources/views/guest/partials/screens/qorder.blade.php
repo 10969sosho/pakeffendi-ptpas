@@ -17,7 +17,7 @@
                 <div class="qorder-card" data-product-id="{{ $product->id }}">
                     <div class="qorder-img">
                         @if($product->photo_path)
-                            <img src="{{ \Illuminate\Support\Str::startsWith($product->photo_path, ['http://', 'https://']) ? $product->photo_path : asset('storage/' . $product->photo_path) }}" alt="{{ $product->name }}">
+                            <img src="{{ $product->photo_url }}" alt="{{ $product->name }}">
                         @else
                             <i class="far fa-image qorder-placeholder-icon"></i>
                         @endif

@@ -123,10 +123,7 @@
                 <div class="row g-3 g-lg-4">
                     @foreach(($products ?? collect()) as $product)
                     @php
-                        $primaryImage = $product->photo_path;
-                        $imageUrl = $primaryImage
-                            ? (\Illuminate\Support\Str::startsWith($primaryImage, ['http://', 'https://']) ? $primaryImage : asset('storage/' . $primaryImage))
-                            : asset('guest/img/placeholder-product.svg');
+                        $imageUrl = $product->photo_url;
                     @endphp
                     <div class="col-6 col-md-4 col-lg-3">
                         <div class="product-card" data-product-id="{{ $product->id }}">
