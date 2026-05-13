@@ -79,8 +79,8 @@ class ProductController extends Controller
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = uniqid('', true) . '.' . $extension;
+            $originalName = basename((string) $file->getClientOriginalName());
+            $filename = preg_replace('/\s+/', '-', $originalName);
             $path = $file->storeAs('products', $filename, 'public');
             $product->photo_path = $path;
             $product->save();
@@ -129,8 +129,8 @@ class ProductController extends Controller
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = uniqid('', true) . '.' . $extension;
+            $originalName = basename((string) $file->getClientOriginalName());
+            $filename = preg_replace('/\s+/', '-', $originalName);
             $path = $file->storeAs('products', $filename, 'public');
             $product->photo_path = $path;
         }
